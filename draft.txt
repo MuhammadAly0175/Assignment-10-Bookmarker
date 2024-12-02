@@ -1,0 +1,27 @@
+function edit(id) {
+    console.log(id)
+    if (mode != 'updating') {
+        var row = document.querySelector(`#row${id}`);
+        rowID = id;
+        row.style.visibility = 'hidden';
+        mode = 'updating';
+        if (bookmarksArray[rowID] === undefined || bookmarksArray[rowID] === undefined) {
+            rowID = bookmarksArray.length - 1;
+        }
+        bookmarkNameInput.value = bookmarksArray[rowID].name;
+        WebsiteUrlInput.value = bookmarksArray[rowID].url;
+    } else {
+        alert('Finish editing the current bookmark first.');
+    }
+
+}
+
+function update() {
+    if (bookmarksArray[rowID] === undefined || bookmarksArray[rowID] === undefined) {
+        rowID = bookmarksArray.length - 1;
+    }
+    bookmarksArray[rowID].name = bookmarkNameInput.value;
+    bookmarksArray[rowID].url = WebsiteUrlInput.value;
+    localStorage.setItem('Bookmarks Array', JSON.stringify(bookmarksArray));
+    mode = 'submitting';
+};
